@@ -4,11 +4,38 @@
   
     
     <entry>
-      <title>十九届智能车地平线组基础完赛方案——01.系统选择和烧录</title>
+      <title>十九届智能车地平线组完赛方案——02.系统启动和连接</title>
+      <link href="/2024/09/30/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/02.%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%92%8C%E8%BF%9E%E6%8E%A5/"/>
+      <url>/2024/09/30/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/02.%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%92%8C%E8%BF%9E%E6%8E%A5/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 智能车 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 智能车 </tag>
+            
+            <tag> 个人项目 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>十九届智能车地平线组完赛方案——01.系统选择和烧录</title>
       <link href="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/"/>
       <url>/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/</url>
       
-        <content type="html"><![CDATA[<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>硬件：RDK X3开发板、SD卡</p><p>软件：操作系统镜像、balenaEtcher烧录软件</p><p>本章相关链接：</p><ul><li><a href="https://github.com/balena-io/etcher/releases">balenaEtcher软件下载</a></li><li><a href="https://archive.d-robotics.cc/downloads/os_images/rdk_x3/">rdk_x3操作系统镜像</a></li><li><a href="https://developer.d-robotics.cc/">地瓜开发者社区</a></li><li><a href="https://pan.baidu.com/s/1FH9txTJil7aMCIUOzhkVcg?pwd=gyh1#list/path=%2F">比赛时官方提供的资料及基础镜像网盘链接</a></li></ul><h3 id="操作系统镜像下载"><a href="#操作系统镜像下载" class="headerlink" title="操作系统镜像下载"></a>操作系统镜像下载</h3><p>官方封装了一些操作系统镜像，内置了许多工具和环境，目前共有三个大版本，1.0已经不推荐使用了，2.0基于Ubuntu-20.04，3.0基于Ubuntu-22.04。</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928203049066.png" class="" title="image-20240928203049066"><p>我们这里使用的是上面的2.1.1版本。比赛时主办方在百度网盘提供了一个镜像，但是这个镜像在当时备赛过程中已经发现存在一些问题，主要是TogetherROS已经与GitHub文档无法对应，以及一些小的BUG，目前最新的镜像不存在这些问题。</p><p>(区域赛前一周意识到了上面的问题，由于只有一人开发，担心进度问题，就继续使用百度网盘中的镜像，所以如果想直接用我的源码，就得使用存在问题的镜像，已经提供在了开头的链接中)</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928204909300.png" class="" title="image-20240928204909300"><p>镜像分为desktop和server两个版本，开发板性能有限，我们使用sever版本。</p><h3 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h3><p>个人推荐使用balenaEtcher，UI更加现代化，还能提醒大容量设备，防止破坏其他硬盘（曾深受其害），类似的软件还有win32 disk imager，这里并没有强制要求。注意这类软件一般都需要以&#x3D;&#x3D;管理员身份&#x3D;&#x3D;运行，否则无法烧录。</p><p>打开软件，选择从文件烧录，选定下载好的img镜像文件</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928211401192.png" class="" title="image-20240928211401192"><p>点击选择目标磁盘，选定要烧录的sd卡，注意要选择单独的磁盘设备，不是分区，一旦开始烧录会格式化选定的整个磁盘设备。</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928211641738.png" class="" title="image-20240928211641738"><p>​确定好之后开始烧录，烧录速度取决SD卡性能。</p><p>如果出现烧录失败，例如报错镜像可能被更改之类，需要以管理员身份运行烧录软件。</p><p>镜像烧录完成就可以插入开发板卡槽，上电等待，如果绿灯闪烁说明系统已经成功启动。</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>硬件：RDK X3开发板、SD卡</p><p>软件：操作系统镜像、balenaEtcher烧录软件</p><p>本章相关链接：</p><ul><li><a href="https://github.com/balena-io/etcher/releases">balenaEtcher软件下载</a></li><li><a href="https://archive.d-robotics.cc/downloads/os_images/rdk_x3/">rdk_x3操作系统镜像</a></li><li><a href="https://developer.d-robotics.cc/">地瓜开发者社区</a></li><li><a href="https://pan.baidu.com/s/1FH9txTJil7aMCIUOzhkVcg?pwd=gyh1#list/path=%2F">比赛时官方提供的资料及基础镜像网盘链接</a></li></ul><h3 id="操作系统镜像下载"><a href="#操作系统镜像下载" class="headerlink" title="操作系统镜像下载"></a>操作系统镜像下载</h3><p>官方封装了一些操作系统镜像，内置了许多工具和环境，目前共有三个大版本，1.0已经不推荐使用了，2.0基于Ubuntu-20.04，3.0基于Ubuntu-22.04。</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928203049066.png" class="" title="image-20240928203049066"><p>我们这里使用的是上面的2.1.1版本。比赛时主办方在百度网盘提供了一个镜像，但是这个镜像在当时备赛过程中已经发现存在一些问题，主要是TogetherROS已经与GitHub文档无法对应，以及一些小的BUG，目前最新的镜像不存在这些问题。</p><p>(区域赛前一周意识到了上面的问题，由于只有一人开发，担心进度问题，就继续使用百度网盘中的镜像，所以如果想直接用我的源码，就得使用存在问题的镜像，已经提供在了开头的链接中)</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928204909300.png" class="" title="image-20240928204909300"><p>镜像分为desktop和server两个版本，开发板性能有限，我们使用sever版本。</p><h3 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h3><p>个人推荐使用balenaEtcher，UI更加现代化，还能提醒大容量设备，防止破坏其他硬盘（曾深受其害），类似的软件还有win32 disk imager，这里并没有强制要求。注意这类软件一般都需要以管理员身份运行，否则无法烧录。</p><p>打开软件，选择从文件烧录，选定下载好的img镜像文件</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240928211401192.png" class="" title="image-20240928211401192"><p>点击选择目标磁盘，选定要烧录的sd卡，注意要选择单独的磁盘设备，不是分区，一旦开始烧录会格式化选定的整个磁盘设备。</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240930142736534.png" class="" title="image-20240930142736534"><p>确定好之后开始烧录，烧录速度取决SD卡性能。</p><img src="/2024/09/28/%E5%8D%81%E4%B9%9D%E5%B1%8A%E6%99%BA%E8%83%BD%E8%BD%A6-%E6%99%BA%E6%85%A7%E5%8C%BB%E7%96%97/01.%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E5%92%8C%E7%83%A7%E5%BD%95/image-20240930142843437.png" class="" title="image-20240930142843437"><p>镜像烧录完成就可以插入开发板卡槽，上电等待，如果绿灯闪烁说明系统已经成功启动。</p><p>如果出现烧录失败，例如报错镜像可能被更改之类，需要以管理员身份运行烧录软件。</p>]]></content>
       
       
       <categories>
